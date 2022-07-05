@@ -8,5 +8,3 @@ SQLAlchemy
 Werkzeug
 gunicorn
 requests
-
-# 

@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint
 import routing, requests
-# from api import app2
+from view.api import app2
 
 app = Flask(__name__)
 routing.iniApp(app)
