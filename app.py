@@ -26,4 +26,4 @@ def ww888Test():
 app.register_blueprint(app2,url_prefix='/<int:pages>')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
