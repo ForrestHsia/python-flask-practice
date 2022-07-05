@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint
-from view.api import app2
+# from view.api import app2
+from api import app2
 
 app = Flask(__name__)
 
@@ -7,4 +8,4 @@ app = Flask(__name__)
 def index():
     return "Hello index"
 
-app.register_blueprint(app2)
+app.register_blueprint(app2,url_prefix='/<int:pages>')
