@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint
 import routing, requests
-from api import app2
+# from api import app2
 
 app = Flask(__name__)
 routing.iniApp(app)
@@ -23,7 +23,7 @@ def ww888Test():
         response = "status_code =" + str(result.status_code)
         return response
 
-app.register_blueprint(app2,url_prefix='/<int:pages>')
+# app.register_blueprint(app2,url_prefix='/<int:pages>')
 
 # if __name__ == "__main__":
 #     app.run()
