@@ -2,14 +2,25 @@ from flask import Flask
 import routing, requests
 from view.api import app2
 from flask_pymongo import PyMongo
+from dataclasses import dataclass
+import dacite
 
 app = Flask(__name__)
 routing.iniApp(app)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/tgMessage"
 mg = PyMongo(app)
 
-class PlayerHRLog:
-    
+
+@dataclass
+class HRLogs:
+    videoId: str
+    hrNumber: int
+    year: str
+    inning: str
+    date: str
+    player: str
+    acnt: str
+
 
 @app.route("/", methods=["GET"])
 def index():
