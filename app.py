@@ -1,25 +1,28 @@
-from flask import Flask
-import routing, requests
-from view.api import app2
-from flask_pymongo import PyMongo
 from dataclasses import dataclass
-import dacite
+from dataclasses import field
+import requests
+import CpblHRSearch as chs
+
+from flask import Flask
+import routing
+
+from view.api import app2
+
 
 app = Flask(__name__)
 routing.iniApp(app)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/tgMessage"
-mg = PyMongo(app)
 
 
 @dataclass
 class HRLogs:
-    videoId: str
-    hrNumber: int
-    year: str
-    inning: str
-    date: str
-    player: str
-    acnt: str
+    hrNumber: int = field(init=False, default=0)
+    year: str = field(init=False, default="")
+    inning: str = field(init=False, default="")
+    date: str = field(init=False, default="")
+    pitcher: str = field(init=False, default="")
+    player: str = field(init=False, default="")
+    acnt: str = field(init=False, default="")
+    videoUrl: str = field(init=False, default_factory=list)
 
 
 @app.route("/", methods=["GET"])
@@ -45,10 +48,9 @@ def ww888Test():
 
 
 @app.route("/player/cpbl/<name>", methods=["POST"])
-def getCPBLPlayerHRLogs(name):
-    hrLogs = list(mg.db.get_collection("HRLogSplit").find({"player": name}))
-    print(hrLogs)
-    return "success"
+def func(name):
+    result = chs.getHRLogs(name)
+    return result
 
 
 # app.register_blueprint(app2, url_prefix="/<int:pages>")
