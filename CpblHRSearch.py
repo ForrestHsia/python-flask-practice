@@ -62,11 +62,11 @@ def getHRLogs(name):
             if len(table) > 1:
                 print("請檢查table的YT撥放清單時間區間, table 為:", table)
             elif len(table) == 0:
-                print(f"編號:{self.hrNumber} 這一支太早了！！沒有HR film！！:")
+                print(f"編號:{self.hrNumber} 這一支沒有影片")
                 return
 
             cursor.execute(
-                f"SELECT * FROM cpbl_youtube_data.{table[0][2]} where video_date like '{date}%' or video_title like '%{inning}%' or video_title like '%{self.player}%'"
+                f"SELECT * FROM cpbl_youtube_data.{table[0][2]} where video_date like '{date}%' and video_title like '%{inning}%' and video_title like '%{self.player}%'"
             )
 
             video = list(cursor.fetchall())

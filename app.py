@@ -4,6 +4,7 @@ import requests
 import CpblHRSearch as chs
 
 from flask import Flask
+from flask import request
 import routing
 
 from view.api import app2
@@ -47,10 +48,15 @@ def ww888Test():
         return response
 
 
-@app.route("/player/cpbl/<name>", methods=["POST"])
-def func(name):
-    result = chs.getHRLogs(name)
-    return result
+@app.route("/player/cpbl", methods=["GET"])
+def func():
+    try:
+        name = request.args.get("name")
+        result = chs.getHRLogs(name)
+        return result
+    except Exception as e:
+        print(e)
+        return None
 
 
 # app.register_blueprint(app2, url_prefix="/<int:pages>")
