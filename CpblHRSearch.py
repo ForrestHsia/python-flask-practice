@@ -56,7 +56,7 @@ def getHRLogs(name):
             date = self.date.replace("/", "-")
             inning = self.inningConverter()
             cursor.execute(
-                f"SELECT * FROM cpbl_youtube_data.cpbl_youtube_playlist where `max_time` > '{date}' and `min_time` < '{date}'and `min_time` > '2012-12-31' and hr_record = 'y' "
+                f"SELECT * FROM cpbl_youtube_data.cpbl_youtube_playlist where `max_time` > '{date}' and `min_time` < '{date}T23:59:59Z'and `min_time` > '2012-12-31' and hr_record = 'y' "
             )
             table = list(cursor.fetchall())
             if len(table) > 1:
